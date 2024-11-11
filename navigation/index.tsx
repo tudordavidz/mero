@@ -4,6 +4,8 @@ import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import FullReviewsScreen from "../screens/FullReviewsScreen"; // Import FullReviewsScreen
 import LeaveReviewScreen from "../screens/LeaveReviewScreen";
+import { MaterialIcons } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native";
 
 // Define and export types for the navigation stack
 export type RootStackParamList = {
@@ -36,7 +38,19 @@ export default function Navigator() {
       <Stack.Screen
         name="LeaveReviewScreen"
         component={LeaveReviewScreen}
-        options={{ title: "Lasă o Recenzie" }}
+        options={({ navigation }) => ({
+          title: "Despre experiența ta",
+          headerRight: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <MaterialIcons
+                name="close"
+                size={24}
+                color="black"
+                style={{ marginLeft: 15 }}
+              />
+            </TouchableOpacity>
+          ),
+        })}
       />
     </Stack.Navigator>
   );
