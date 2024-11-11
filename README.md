@@ -24,9 +24,9 @@ After dependencies are installed, start the project with:
 npm start
 ```
 
-### Step 3: Open Expo Go from Appstore scan with camera the QR Code from terminal. 
+### Step 3: Open Expo Go from the Appstore and scan the QR Code from the terminal with the camera. Make sure you are on the same Wi-Fi!
 
-Enjoy! 
+Enjoy!
 
 ### Optional (Demo)
 
