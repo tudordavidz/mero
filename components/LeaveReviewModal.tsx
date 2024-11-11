@@ -7,6 +7,7 @@ interface LeaveReviewModalProps {
   onClose: () => void;
   profileName: string;
   onRatingSelect: (rating: number) => void;
+  initialRating?: number; // Add this line
 }
 
 export default function LeaveReviewModal({

@@ -86,7 +86,13 @@ export default function LatestReviews({ profileId }: LatestReviewsProps) {
         <>
           <FlatList
             data={reviews}
-            renderItem={({ item }) => <ReviewCard review={item} />}
+            renderItem={({ item }) => (
+              <ReviewCard
+                review={item}
+                onRefresh={fetchReviews} // Pass the refresh function here
+                profileId={profileId}
+              />
+            )}
             keyExtractor={(item) => item._id}
           />
           <TouchableOpacity

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { RouteProp, useRoute } from "@react-navigation/native";
+import { RouteProp, useFocusEffect, useRoute } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation";
 import { getReviews } from "../services/api";
 import { VisibleFeedbackDetails } from "../types";
@@ -59,6 +59,12 @@ export default function FullReviewsScreen() {
     fetchAllReviews();
   }, [profileId]);
 
+  useFocusEffect(
+    useCallback(() => {
+      fetchAllReviews();
+    }, [profileId])
+  );
+
   if (loading) {
     return (
       <ActivityIndicator
@@ -74,7 +80,13 @@ export default function FullReviewsScreen() {
       <Text style={styles.header}>Toate Recenziile</Text>
       <FlatList
         data={reviews}
-        renderItem={({ item }) => <ReviewCard review={item} />}
+        renderItem={({ item }) => (
+          <ReviewCard
+            review={item}
+            onRefresh={fetchAllReviews} // Pass the refresh function here
+            profileId={profileId}
+          />
+        )}
         keyExtractor={(item) => item._id}
       />
     </View>
