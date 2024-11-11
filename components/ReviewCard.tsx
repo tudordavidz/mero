@@ -53,7 +53,7 @@ export default function ReviewCard({
   const openMenu = () => {
     ActionSheetIOS.showActionSheetWithOptions(
       {
-        options: ["Modifica recenzie", "Sterge recenzie", "Anuleaza"],
+        options: ["Modifică recenzie", "Șterge recenzie", "Anulează"],
         destructiveButtonIndex: 1,
         cancelButtonIndex: 2,
       },

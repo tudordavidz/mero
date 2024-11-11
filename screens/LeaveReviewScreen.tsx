@@ -36,7 +36,7 @@ export default function LeaveReviewScreen({
       feedback: { score: rating, review: reviewText },
     };
     await AsyncStorage.setItem("userReview", JSON.stringify(review));
-    Alert.alert("Review saved successfully!");
+    Alert.alert("Recenzie salvata!");
     navigation.goBack();
   };
 
