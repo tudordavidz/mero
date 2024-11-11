@@ -119,11 +119,11 @@ const styles = StyleSheet.create({
     padding: 10,
     width: 140,
     marginRight: 10,
-    shadowColor: "#888", // Light gray shadow color
-    shadowOffset: { width: 0, height: 2 }, // Horizontal and vertical shadow offset
-    shadowOpacity: 0.15, // Lower opacity for softer shadow
-    shadowRadius: 4, // Slight blur for subtle shadow
-    elevation: 3, // Shadow effect for Android
+    shadowColor: "#888",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
+    elevation: 3,
   },
   status: {
     fontSize: 12,

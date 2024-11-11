@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { PageProfile } from "../types";
+import { FontAwesome } from "@expo/vector-icons";
 
 interface ProfileDetailsProps {
   profile: PageProfile;
@@ -24,7 +25,15 @@ export default function ProfileDetails({ profile }: ProfileDetailsProps) {
 
       {/* Feedback Rating and Total Reviews */}
       <View style={styles.ratingContainer}>
-        <Text style={styles.star}>⭐</Text>
+        {/* Star Icon */}
+        <FontAwesome
+          name="star"
+          size={18}
+          color="#FFD700"
+          style={styles.star}
+        />
+
+        {/* Rating and Reviews */}
         <Text style={styles.rating}>{profile.feedback.score.toFixed(2)}</Text>
         <TouchableOpacity>
           <Text style={styles.reviews}>
@@ -32,8 +41,6 @@ export default function ProfileDetails({ profile }: ProfileDetailsProps) {
           </Text>
         </TouchableOpacity>
       </View>
-
-      {/* Location with Hardcoded Distance */}
       <Text style={styles.location}>
         {hardcodedDistance} - {profile.location.address},{" "}
         {profile.location.city}
@@ -69,8 +76,6 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   star: {
-    fontSize: 18,
-    color: "#FFD700",
     marginRight: 4,
     marginLeft: 10,
   },

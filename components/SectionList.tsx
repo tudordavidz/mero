@@ -55,11 +55,11 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 15,
     backgroundColor: "#fff",
-    shadowColor: "#888", // Light gray shadow color
-    shadowOffset: { width: 0, height: 2 }, // Horizontal and vertical shadow offset
-    shadowOpacity: 0.15, // Reduce opacity for a softer shadow
-    shadowRadius: 4, // Slightly smaller blur radius for subtlety
-    elevation: 3, // Shadow for Android
+    shadowColor: "#888",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
+    elevation: 3,
   },
   button: {
     paddingVertical: 8,
@@ -68,11 +68,11 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   selectedButton: {
-    backgroundColor: "blue",
+    backgroundColor: "#0000FF",
   },
   text: {
     fontSize: 16,
-    color: "blue",
+    color: "#0000FF",
   },
   selectedText: {
     color: "#fff",

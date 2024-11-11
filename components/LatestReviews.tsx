@@ -26,7 +26,7 @@ export default function LatestReviews({ profileId }: LatestReviewsProps) {
   const [reviews, setReviews] = useState<VisibleFeedbackDetails[]>([]);
   const [loading, setLoading] = useState(true);
   const [showLeaveReviewModal, setShowLeaveReviewModal] = useState(false);
-  const [hasUserReview, setHasUserReview] = useState(false); // New state variable
+  const [hasUserReview, setHasUserReview] = useState(false);
   const navigation = useNavigation<NavigationProp>();
 
   // Function to fetch reviews and handle stored review display
@@ -144,21 +144,41 @@ const styles = StyleSheet.create({
   moreReviewsButton: {
     marginTop: 15,
     alignSelf: "center",
-    backgroundColor: "#E0E7FF",
+    backgroundColor: "#F3F4FF",
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
   },
-  moreReviewsText: { color: "#007bff", fontSize: 16, textAlign: "center" },
+  moreReviewsText: {
+    color: "#3B5FFF",
+    fontSize: 16,
+    textAlign: "center",
+    fontWeight: "bold",
+  },
   addReviewButton: {
     marginTop: 15,
     alignSelf: "center",
-    backgroundColor: "#E0E7FF",
+    backgroundColor: "#F3F4FF",
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
   },
-  addReviewText: { color: "#007bff", fontSize: 16, textAlign: "center" },
+  addReviewText: {
+    color: "#3B5FFF",
+    fontSize: 16,
+    textAlign: "center",
+    fontWeight: "bold",
+  },
   spacer: {
     height: 30,
   },

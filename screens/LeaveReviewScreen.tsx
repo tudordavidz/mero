@@ -31,7 +31,7 @@ export default function LeaveReviewScreen({
 
   const handleSubmit = async () => {
     const review = {
-      _id: "userReview", // unique ID for local storage
+      _id: "userReview",
       user: { firstname: "George", lastname: "D.", profilePhoto: null },
       feedback: { score: rating, review: reviewText },
     };
@@ -52,7 +52,7 @@ export default function LeaveReviewScreen({
           key={i}
           name={i <= score ? "star" : "star-border"}
           size={24}
-          color="#FFD700" // Gold color for filled stars
+          color="#FFD700"
         />
       );
     }

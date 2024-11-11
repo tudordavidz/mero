@@ -1,5 +1,3 @@
-// ReviewCard.tsx
-
 import React, { useState, useEffect } from "react";
 import {
   View,
@@ -25,7 +23,7 @@ type NavigationProp = StackNavigationProp<
 
 interface ReviewCardProps {
   review: VisibleFeedbackDetails;
-  onRefresh: () => void; // Callback to refresh the review list after edit or delete
+  onRefresh: () => void;
   profileId: string;
 }
 
@@ -70,7 +68,7 @@ export default function ReviewCard({
               style: "destructive",
               onPress: async () => {
                 await AsyncStorage.removeItem("userReview");
-                onRefresh(); // Refresh reviews list after deletion
+                onRefresh();
               },
             },
           ]);
@@ -86,7 +84,7 @@ export default function ReviewCard({
     };
     AsyncStorage.setItem("userReview", JSON.stringify(updatedReview));
     setShowEditModal(false);
-    onRefresh(); // Trigger refresh after editing
+    onRefresh();
     navigation.navigate("LeaveReviewScreen", {
       profileId: profileId,
       rating: newRating,
@@ -164,16 +162,16 @@ export default function ReviewCard({
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "#FFFFFF", // Set to pure white
+    backgroundColor: "#FFFFFF",
     padding: 15,
     borderRadius: 10,
     marginBottom: 10,
-    marginHorizontal: 30, // Adds space on the left and right
+    marginHorizontal: 30,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 5,
-    elevation: 3, // Adds a slight shadow for a lifted effect on Android
+    elevation: 3,
   },
   userReviewHeader: { flexDirection: "row", justifyContent: "space-between" },
   userReviewText: { fontWeight: "bold", fontSize: 16 },
