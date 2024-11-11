@@ -6,8 +6,9 @@ import {
   ActivityIndicator,
   StyleSheet,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { RootStackParamList } from "../navigation"; // Import RootStackParamList
+import { RootStackParamList } from "../navigation";
 import { getReviews } from "../services/api";
 import { VisibleFeedbackDetails } from "../types";
 import ReviewCard from "../components/ReviewCard";
@@ -18,29 +19,43 @@ type FullReviewsScreenRouteProp = RouteProp<
 >;
 
 export default function FullReviewsScreen() {
-  const route = useRoute<FullReviewsScreenRouteProp>(); // Type the route
+  const route = useRoute<FullReviewsScreenRouteProp>();
   const { profileId } = route.params;
   const [reviews, setReviews] = useState<VisibleFeedbackDetails[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    async function fetchAllReviews() {
-      try {
-        setLoading(true);
-        const reviewData = await getReviews(profileId, 9999);
-        if (reviewData && reviewData.data) {
-          const visibleReviews = reviewData.data.filter(
-            (review): review is VisibleFeedbackDetails => !review.isAnonymous
-          );
+  const fetchAllReviews = async () => {
+    try {
+      setLoading(true);
+
+      // Retrieve the stored user review
+      const storedReview = await AsyncStorage.getItem("userReview");
+      const userReview = storedReview ? JSON.parse(storedReview) : null;
+
+      // Fetch all reviews from API
+      const reviewData = await getReviews(profileId, 9999);
+
+      if (reviewData && reviewData.data) {
+        // Filter out anonymous reviews
+        const visibleReviews = reviewData.data.filter(
+          (review): review is VisibleFeedbackDetails => !review.isAnonymous
+        );
+
+        // Place user review at the top, if it exists
+        if (userReview) {
+          setReviews([userReview, ...visibleReviews]);
+        } else {
           setReviews(visibleReviews);
         }
-      } catch (error) {
-        console.error("Error fetching reviews:", error);
-      } finally {
-        setLoading(false);
       }
+    } catch (error) {
+      console.error("Error fetching reviews:", error);
+    } finally {
+      setLoading(false);
     }
+  };
 
+  useEffect(() => {
     fetchAllReviews();
   }, [profileId]);
 
