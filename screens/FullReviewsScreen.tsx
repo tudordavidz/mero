@@ -77,13 +77,12 @@ export default function FullReviewsScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Toate Recenziile</Text>
       <FlatList
         data={reviews}
         renderItem={({ item }) => (
           <ReviewCard
             review={item}
-            onRefresh={fetchAllReviews} // Pass the refresh function here
+            onRefresh={fetchAllReviews}
             profileId={profileId}
           />
         )}

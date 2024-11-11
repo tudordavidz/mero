@@ -17,7 +17,7 @@ export async function getProfile(slug: string): Promise<PageProfile | null> {
   }
 }
 
-// Fetch reviews by pageId with limit for pagination
+// Fetch reviews by pageId
 export async function getReviews(
   pageId: string,
   limit = 5

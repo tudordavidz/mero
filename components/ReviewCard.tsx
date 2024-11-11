@@ -120,7 +120,7 @@ export default function ReviewCard({
         <View style={styles.userReviewHeader}>
           <Text style={styles.userReviewText}>Recenzia ta</Text>
           <TouchableOpacity onPress={openMenu}>
-            <Text style={styles.menuIcon}>⋮</Text>
+            <Text style={styles.menuIcon}>...</Text>
           </TouchableOpacity>
         </View>
       )}
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
   },
   userReviewHeader: { flexDirection: "row", justifyContent: "space-between" },
   userReviewText: { fontWeight: "bold", fontSize: 16 },
-  menuIcon: { fontSize: 16, color: "#007bff" },
+  menuIcon: { fontSize: 30, top: -15, color: "#007bff" },
   header: { flexDirection: "row", alignItems: "flex-start" },
   userPhoto: { width: 40, height: 40, borderRadius: 20, marginRight: 10 },
   userInitials: {

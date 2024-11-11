@@ -18,7 +18,7 @@ import LatestReviews from "../components/LatestReviews";
 export default function ProfileScreen() {
   const [profile, setProfile] = useState<PageProfile | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [selectedSection, setSelectedSection] = useState<string>(""); // Track selected section
+  const [selectedSection, setSelectedSection] = useState<string>("");
 
   const handleSectionSelect = (section: string) => {
     setSelectedSection(section);
@@ -28,9 +28,8 @@ export default function ProfileScreen() {
     async function fetchProfile() {
       try {
         setLoading(true);
-        const profileData = await getProfile("one-barbershop"); // Use actual profile ID
+        const profileData = await getProfile("one-barbershop");
         setProfile(profileData);
-        // Automatically set to "Recenzii" if it was selected previously
         setSelectedSection((prev) => prev || "Recenzii");
       } catch (error) {
         console.error("Error fetching profile:", error);
@@ -58,7 +57,6 @@ export default function ProfileScreen() {
     );
   }
 
-  // Define content for each component in the FlatList
   const content = [
     { key: "imageGallery", content: <ImageGallery images={profile.images} /> },
     { key: "profileDetails", content: <ProfileDetails profile={profile} /> },
@@ -105,6 +103,6 @@ const styles = StyleSheet.create({
   },
   sectionContainer: {
     backgroundColor: "#fff",
-    paddingVertical: 5, // Minimal padding for readability
+    paddingVertical: 5,
   },
 });

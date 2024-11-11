@@ -26,6 +26,7 @@ export default function LatestReviews({ profileId }: LatestReviewsProps) {
   const [reviews, setReviews] = useState<VisibleFeedbackDetails[]>([]);
   const [loading, setLoading] = useState(true);
   const [showLeaveReviewModal, setShowLeaveReviewModal] = useState(false);
+  const [hasUserReview, setHasUserReview] = useState(false); // New state variable
   const navigation = useNavigation<NavigationProp>();
 
   // Function to fetch reviews and handle stored review display
@@ -33,7 +34,10 @@ export default function LatestReviews({ profileId }: LatestReviewsProps) {
     try {
       setLoading(true);
       const storedReview = await AsyncStorage.getItem("userReview");
-      const reviewData = await getReviews(profileId, storedReview ? 2 : 3); // Adjust limit based on whether the user review exists
+      const userReviewExists = Boolean(storedReview);
+      setHasUserReview(userReviewExists);
+
+      const reviewData = await getReviews(profileId, userReviewExists ? 2 : 3);
 
       if (reviewData && reviewData.data) {
         const visibleReviews = reviewData.data.filter(
@@ -81,7 +85,7 @@ export default function LatestReviews({ profileId }: LatestReviewsProps) {
   return (
     <View style={styles.container}>
       {reviews.length === 0 ? (
-        <Text style={styles.noReviewsText}>No reviews yet</Text>
+        <Text style={styles.noReviewsText}>Nu sunt recenzii momentan!</Text>
       ) : (
         <>
           <FlatList
@@ -89,7 +93,7 @@ export default function LatestReviews({ profileId }: LatestReviewsProps) {
             renderItem={({ item }) => (
               <ReviewCard
                 review={item}
-                onRefresh={fetchReviews} // Pass the refresh function here
+                onRefresh={fetchReviews}
                 profileId={profileId}
               />
             )}
@@ -103,12 +107,15 @@ export default function LatestReviews({ profileId }: LatestReviewsProps) {
           >
             <Text style={styles.moreReviewsText}>Vezi mai multe recenzii</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.addReviewButton}
-            onPress={handleAddReview}
-          >
-            <Text style={styles.addReviewText}>Adauga recenzie</Text>
-          </TouchableOpacity>
+          {/* Conditionally render the "Adaugă recenzie" button only if no user review exists */}
+          {!hasUserReview && (
+            <TouchableOpacity
+              style={styles.addReviewButton}
+              onPress={handleAddReview}
+            >
+              <Text style={styles.addReviewText}>Adaugă recenzie</Text>
+            </TouchableOpacity>
+          )}
         </>
       )}
       {showLeaveReviewModal && (
@@ -146,10 +153,10 @@ const styles = StyleSheet.create({
   addReviewButton: {
     marginTop: 15,
     alignSelf: "center",
-    backgroundColor: "#007bff",
+    backgroundColor: "#E0E7FF",
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 20,
   },
-  addReviewText: { color: "#fff", fontSize: 16, textAlign: "center" },
+  addReviewText: { color: "#007bff", fontSize: 16, textAlign: "center" },
 });

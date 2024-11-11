@@ -7,7 +7,7 @@ interface LeaveReviewModalProps {
   onClose: () => void;
   profileName: string;
   onRatingSelect: (rating: number) => void;
-  initialRating?: number; // Add this line
+  initialRating?: number;
 }
 
 export default function LeaveReviewModal({
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   },
   starWithLabel: {
     alignItems: "center",
-    width: 65, // Increased width to fit longer text labels
+    width: 65,
   },
   starButton: {
     alignItems: "center",

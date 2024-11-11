@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation, RouteProp } from "@react-navigation/native";
-import { MaterialIcons } from "@expo/vector-icons"; // For star icons
+import { MaterialIcons } from "@expo/vector-icons";
 import { format } from "date-fns";
 import { RootStackParamList } from "../navigation";
 
@@ -41,7 +41,7 @@ export default function LeaveReviewScreen({
   };
 
   const handleClose = () => {
-    navigation.goBack(); // Close screen without saving
+    navigation.goBack();
   };
 
   const renderStars = (score: number) => {

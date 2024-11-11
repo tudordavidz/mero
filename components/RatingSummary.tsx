@@ -28,17 +28,17 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 20,
     fontWeight: "600",
-    color: "#000", // Black color for header text
+    color: "#000",
     marginBottom: 5,
   },
   averageRating: {
-    fontSize: 44, // Slightly adjusted to match the look
+    fontSize: 44,
     fontWeight: "bold",
-    color: "#000", // Black color for rating number
+    color: "#000",
   },
   totalRatings: {
     fontSize: 16,
-    color: "#444", // Dark gray for the total ratings count
+    color: "#444",
     marginTop: 5,
   },
 });

@@ -69,18 +69,18 @@ const styles = StyleSheet.create({
   },
   star: {
     fontSize: 18,
-    color: "#FFD700", // Gold color for the star
+    color: "#FFD700",
     marginRight: 4,
   },
   rating: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#333", // Dark gray for the rating number
+    color: "#333",
     marginRight: 5,
   },
   reviews: {
     fontSize: 16,
-    color: "blue", // Blue color for the review count to indicate it's clickable
+    color: "blue",
   },
   location: {
     fontSize: 16,

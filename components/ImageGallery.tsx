@@ -27,8 +27,8 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
 const styles = StyleSheet.create({
   galleryContainer: {
     height: 250,
-    marginBottom: 0, // Ensure no extra margin
-    paddingBottom: 0, // Ensure no extra padding at bottom
+    marginBottom: 0,
+    paddingBottom: 0,
   },
   galleryImage: {
     width: 300,

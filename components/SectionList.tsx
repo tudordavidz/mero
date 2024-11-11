@@ -18,7 +18,7 @@ export default function SectionList({ onSectionSelect }: SectionListProps) {
 
   const handlePress = (section: string) => {
     setSelectedSection(section);
-    onSectionSelect(section); // Notify parent component of section change
+    onSectionSelect(section);
   };
 
   return (

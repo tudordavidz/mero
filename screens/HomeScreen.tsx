@@ -10,7 +10,7 @@ export default function HomeScreen() {
   const navigation = useNavigation<HomeScreenNavigationProp>();
 
   const handleViewProfile = () => {
-    navigation.navigate("Profile"); // Navigate to the Profile screen
+    navigation.navigate("Profile");
   };
 
   return (
