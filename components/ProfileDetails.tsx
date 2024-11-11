@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     marginBottom: 5,
+    marginLeft: 10,
   },
   title: {
     fontSize: 22,
@@ -71,6 +72,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "#FFD700",
     marginRight: 4,
+    marginLeft: 10,
   },
   rating: {
     fontSize: 18,
@@ -85,5 +87,6 @@ const styles = StyleSheet.create({
   location: {
     fontSize: 16,
     color: "gray",
+    marginLeft: 10,
   },
 });

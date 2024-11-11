@@ -21,24 +21,27 @@ export default function RatingSummary({
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 15,
-    paddingHorizontal: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
     alignItems: "flex-start",
   },
   header: {
-    fontSize: 20,
-    fontWeight: "600",
-    color: "#000",
-    marginBottom: 5,
-  },
-  averageRating: {
-    fontSize: 44,
+    fontSize: 22,
     fontWeight: "bold",
     color: "#000",
+    marginBottom: 10,
+    marginLeft: 17,
+  },
+  averageRating: {
+    fontSize: 48,
+    fontWeight: "700",
+    color: "#000",
+    marginLeft: 17,
   },
   totalRatings: {
     fontSize: 16,
-    color: "#444",
-    marginTop: 5,
+    color: "#666",
+    marginTop: -5,
+    marginLeft: 17,
   },
 });

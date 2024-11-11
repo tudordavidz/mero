@@ -134,7 +134,7 @@ export default function LatestReviews({ profileId }: LatestReviewsProps) {
 }
 
 const styles = StyleSheet.create({
-  container: { marginTop: 10 },
+  container: { marginTop: 10, paddingBottom: 40 },
   noReviewsText: {
     fontSize: 16,
     color: "#888",
@@ -159,4 +159,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   addReviewText: { color: "#007bff", fontSize: 16, textAlign: "center" },
+  spacer: {
+    height: 30,
+  },
 });

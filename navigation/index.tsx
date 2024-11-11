@@ -23,7 +23,7 @@ export default function Navigator() {
       initialRouteName="Home"
       screenOptions={({ navigation, route }) => ({
         headerLeft:
-          route.name === "Home"
+          route.name === "Home" || route.name === "LeaveReviewScreen"
             ? undefined
             : () => (
                 <TouchableOpacity onPress={() => navigation?.goBack()}>
@@ -55,7 +55,20 @@ export default function Navigator() {
       <Stack.Screen
         name="LeaveReviewScreen"
         component={LeaveReviewScreen}
-        options={{ title: "Despre experiența ta" }}
+        options={({ navigation }) => ({
+          title: "Despre experiența ta",
+          headerRight: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <MaterialIcons
+                name="close"
+                size={24}
+                color="black"
+                style={{ marginRight: 15 }}
+              />
+            </TouchableOpacity>
+          ),
+          headerLeft: () => null,
+        })}
       />
     </Stack.Navigator>
   );

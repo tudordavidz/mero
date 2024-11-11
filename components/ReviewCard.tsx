@@ -164,10 +164,16 @@ export default function ReviewCard({
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "#f9f9f9",
+    backgroundColor: "#FFFFFF", // Set to pure white
     padding: 15,
     borderRadius: 10,
     marginBottom: 10,
+    marginHorizontal: 30, // Adds space on the left and right
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 3, // Adds a slight shadow for a lifted effect on Android
   },
   userReviewHeader: { flexDirection: "row", justifyContent: "space-between" },
   userReviewText: { fontWeight: "bold", fontSize: 16 },

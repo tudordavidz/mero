@@ -102,26 +102,28 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 20,
     paddingHorizontal: 15,
+    paddingBottom: 10,
   },
   header: {
     fontSize: 18,
     fontWeight: "bold",
     marginBottom: 10,
+    marginLeft: 10,
   },
   scrollView: {
     flexDirection: "row",
   },
   card: {
-    backgroundColor: "#f9f9f9",
+    backgroundColor: "#FFFFFF",
     borderRadius: 10,
     padding: 10,
     width: 140,
     marginRight: 10,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 2,
+    shadowColor: "#888", // Light gray shadow color
+    shadowOffset: { width: 0, height: 2 }, // Horizontal and vertical shadow offset
+    shadowOpacity: 0.15, // Lower opacity for softer shadow
+    shadowRadius: 4, // Slight blur for subtle shadow
+    elevation: 3, // Shadow effect for Android
   },
   status: {
     fontSize: 12,
