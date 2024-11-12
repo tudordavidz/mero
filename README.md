@@ -1,5 +1,3 @@
-
-
 ## Prerequisites
 
 Ensure you have **Node.js** and **npm** installed on your machine. If not, you can download them [here](https://nodejs.org/).
@@ -30,5 +28,4 @@ Enjoy!
 
 ### Optional (Demo)
 
-Click [here](https://drive.google.com/file/d/1-_nfxxM4UMraHO_wwk2pKi-jebg9oe5c/view?usp=sharing)!
-
+Click [here](https://drive.google.com/file/d/1EsXGFCnL5N1lqPFBi84fvurUIqScNi_D/view?usp=sharing)!

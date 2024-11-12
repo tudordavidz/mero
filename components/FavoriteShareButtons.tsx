@@ -4,18 +4,22 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 
 interface FavoriteShareButtonsProps {
   imageUrl: string;
+  isFavorite?: boolean;
+  toggleFavorite?: () => void;
   variant?: "header" | "overlay";
 }
 
 export default function FavoriteShareButtons({
   imageUrl,
+  isFavorite: externalIsFavorite,
+  toggleFavorite: externalToggleFavorite,
   variant = "overlay",
 }: FavoriteShareButtonsProps) {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [internalFavorite, setInternalFavorite] = useState(false);
 
-  const toggleFavorite = () => {
-    setIsFavorite(!isFavorite);
-  };
+  const isFavorite = externalIsFavorite ?? internalFavorite;
+  const toggleFavorite =
+    externalToggleFavorite ?? (() => setInternalFavorite(!internalFavorite));
 
   const handleShare = async () => {
     try {
@@ -29,7 +33,11 @@ export default function FavoriteShareButtons({
   };
 
   return (
-    <View style={styles.overlayContainer}>
+    <View
+      style={
+        variant === "overlay" ? styles.overlayContainer : styles.headerContainer
+      }
+    >
       <TouchableOpacity
         onPress={toggleFavorite}
         style={[
@@ -40,7 +48,7 @@ export default function FavoriteShareButtons({
         <Ionicons
           name={isFavorite ? "heart" : "heart-outline"}
           size={24}
-          color="black"
+          color={isFavorite ? "red" : "black"}
         />
       </TouchableOpacity>
       <TouchableOpacity
@@ -60,6 +68,9 @@ const styles = StyleSheet.create({
   overlayContainer: {
     flexDirection: "row",
     alignItems: "center",
+  },
+  headerContainer: {
+    flexDirection: "row",
   },
   button: {
     width: 40,

@@ -5,6 +5,8 @@ import {
   ActivityIndicator,
   StyleSheet,
   FlatList,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
 } from "react-native";
 import { getProfile } from "../services/api";
 import { PageProfile } from "../types";
@@ -14,11 +16,20 @@ import LastAppointments from "../components/LastAppointments";
 import SectionList from "../components/SectionList";
 import RatingSummary from "../components/RatingSummary";
 import LatestReviews from "../components/LatestReviews";
+import FavoriteShareButtons from "../components/FavoriteShareButtons";
+import { useNavigation } from "@react-navigation/native";
 
 export default function ProfileScreen() {
   const [profile, setProfile] = useState<PageProfile | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
+  const [isHeaderButtonVisible, setIsHeaderButtonVisible] = useState(false);
   const [selectedSection, setSelectedSection] = useState<string>("");
+  const navigation = useNavigation();
+
+  const toggleFavorite = () => {
+    setIsFavorite(!isFavorite);
+  };
 
   const handleSectionSelect = (section: string) => {
     setSelectedSection(section);
@@ -41,6 +52,36 @@ export default function ProfileScreen() {
     fetchProfile();
   }, []);
 
+  // Set up the header buttons based on scroll position
+  useEffect(() => {
+    if (isHeaderButtonVisible && profile) {
+      navigation.setOptions({
+        headerRight: () => (
+          <FavoriteShareButtons
+            imageUrl={profile.images[0].large}
+            isFavorite={isFavorite}
+            toggleFavorite={toggleFavorite}
+            variant="header"
+          />
+        ),
+      });
+    } else {
+      // Remove header buttons when not needed
+      navigation.setOptions({ headerRight: () => null });
+    }
+  }, [navigation, profile, isHeaderButtonVisible, isFavorite]);
+
+  // Scroll handler to toggle header button visibility
+  const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const yOffset = event.nativeEvent.contentOffset.y;
+    const threshold = 70;
+    if (yOffset > threshold && !isHeaderButtonVisible) {
+      setIsHeaderButtonVisible(true);
+    } else if (yOffset <= threshold && isHeaderButtonVisible) {
+      setIsHeaderButtonVisible(false);
+    }
+  };
+
   if (loading) {
     return (
       <View style={styles.centered}>
@@ -58,7 +99,16 @@ export default function ProfileScreen() {
   }
 
   const content = [
-    { key: "imageGallery", content: <ImageGallery images={profile.images} /> },
+    {
+      key: "imageGallery",
+      content: (
+        <ImageGallery
+          images={profile.images}
+          isFavorite={isFavorite}
+          toggleFavorite={toggleFavorite}
+        />
+      ),
+    },
     { key: "profileDetails", content: <ProfileDetails profile={profile} /> },
     { key: "lastAppointments", content: <LastAppointments /> },
     {
@@ -91,6 +141,8 @@ export default function ProfileScreen() {
         <View style={styles.sectionContainer}>{item.content}</View>
       )}
       keyExtractor={(item) => item.key}
+      onScroll={handleScroll}
+      scrollEventThrottle={16}
     />
   );
 }

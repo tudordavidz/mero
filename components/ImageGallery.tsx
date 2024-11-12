@@ -5,9 +5,15 @@ import FavoriteShareButtons from "./FavoriteShareButtons";
 
 interface ImageGalleryProps {
   images: PageImage[];
+  isFavorite: boolean;
+  toggleFavorite: () => void;
 }
 
-export default function ImageGallery({ images }: ImageGalleryProps) {
+export default function ImageGallery({
+  images,
+  isFavorite,
+  toggleFavorite,
+}: ImageGalleryProps) {
   return (
     <View style={styles.container}>
       <ScrollView
@@ -24,9 +30,14 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
         ))}
       </ScrollView>
 
-      {/* Render FavoriteShareButtons as an absolute overlay in the top-right */}
+      {/* Render FavoriteShareButtons as an overlay */}
       <View style={styles.favoriteShareContainer}>
-        <FavoriteShareButtons imageUrl={images[0].large} />
+        <FavoriteShareButtons
+          imageUrl={images[0].large}
+          isFavorite={isFavorite}
+          toggleFavorite={toggleFavorite}
+          variant="overlay"
+        />
       </View>
     </View>
   );
