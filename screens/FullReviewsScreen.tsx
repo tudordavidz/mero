@@ -12,6 +12,7 @@ import { RootStackParamList } from "../navigation";
 import { getReviews } from "../services/api";
 import { VisibleFeedbackDetails } from "../types";
 import ReviewCard from "../components/ReviewCard";
+import RatingSummary from "../components/RatingSummary";
 
 type FullReviewsScreenRouteProp = RouteProp<
   RootStackParamList,
@@ -23,6 +24,8 @@ export default function FullReviewsScreen() {
   const { profileId } = route.params;
   const [reviews, setReviews] = useState<VisibleFeedbackDetails[]>([]);
   const [loading, setLoading] = useState(true);
+  const [averageRating, setAverageRating] = useState<number>(0);
+  const [totalRatingsCount, setTotalRatingsCount] = useState<number>(0);
 
   const fetchAllReviews = async () => {
     try {
@@ -40,6 +43,15 @@ export default function FullReviewsScreen() {
         const visibleReviews = reviewData.data.filter(
           (review): review is VisibleFeedbackDetails => !review.isAnonymous
         );
+
+        // Calculate average rating and total count for metrics
+        const totalScore = visibleReviews.reduce(
+          (acc, review) => acc + review.feedback.score,
+          0
+        );
+        const average = totalScore / visibleReviews.length;
+        setAverageRating(average);
+        setTotalRatingsCount(visibleReviews.length);
 
         // Place user review at the top, if it exists
         if (userReview) {
@@ -77,6 +89,12 @@ export default function FullReviewsScreen() {
 
   return (
     <View style={styles.container}>
+      {/* Add the RatingSummary component above the list */}
+      <RatingSummary
+        averageRating={averageRating}
+        totalRatingsCount={totalRatingsCount}
+      />
+
       <FlatList
         data={reviews}
         renderItem={({ item }) => (

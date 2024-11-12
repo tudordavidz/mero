@@ -1,5 +1,8 @@
 import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
+import {
+  createStackNavigator,
+  TransitionPresets,
+} from "@react-navigation/stack";
 import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import FullReviewsScreen from "../screens/FullReviewsScreen";
@@ -22,6 +25,7 @@ export default function Navigator() {
     <Stack.Navigator
       initialRouteName="Home"
       screenOptions={({ navigation, route }) => ({
+        // Default back button for all screens except "Home" and "LeaveReviewScreen"
         headerLeft:
           route.name === "Home" || route.name === "LeaveReviewScreen"
             ? undefined
@@ -45,12 +49,30 @@ export default function Navigator() {
       <Stack.Screen
         name="Profile"
         component={ProfileScreen}
-        options={{ title: "One barbershop" }}
+        options={({ navigation }) => ({
+          title: "One barbershop",
+          headerLeft: () => null,
+        })}
       />
       <Stack.Screen
         name="FullReviewsScreen"
         component={FullReviewsScreen}
-        options={{ title: "One barbershop" }}
+        options={({ navigation }) => ({
+          title: "One barbershop",
+          presentation: "modal",
+          ...TransitionPresets.ModalSlideFromBottomIOS,
+          headerLeft: () => null,
+          headerRight: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <MaterialIcons
+                name="close"
+                size={24}
+                color="black"
+                style={{ marginRight: 15 }}
+              />
+            </TouchableOpacity>
+          ),
+        })}
       />
       <Stack.Screen
         name="LeaveReviewScreen"
