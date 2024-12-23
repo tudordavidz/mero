@@ -26,6 +26,4 @@ npm start
 
 Enjoy!
 
-### Optional (Demo)
 
-Click [here](https://drive.google.com/file/d/1EsXGFCnL5N1lqPFBi84fvurUIqScNi_D/view?usp=sharing)!
